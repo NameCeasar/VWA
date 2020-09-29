@@ -1,0 +1,885 @@
+
+VWA.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         0000000c  00800100  000005ec  00000680  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000005ec  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000017  0080010c  0080010c  0000068c  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000068c  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000006bc  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000030  00000000  00000000  000006f8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000008a3  00000000  00000000  00000728  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000006de  00000000  00000000  00000fcb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000549  00000000  00000000  000016a9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000000bc  00000000  00000000  00001bf4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000003b3  00000000  00000000  00001cb0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000342  00000000  00000000  00002063  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000020  00000000  00000000  000023a5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 38 00 	jmp	0x70	; 0x70 <__ctors_end>
+   4:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+   8:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+   c:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  10:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  14:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  18:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  1c:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  20:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  24:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  28:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  2c:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  30:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  34:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  38:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  3c:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  40:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  44:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  48:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  4c:	0c 94 9d 00 	jmp	0x13a	; 0x13a <__vector_19>
+  50:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  54:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  58:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  5c:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  60:	0c 94 57 00 	jmp	0xae	; 0xae <__vector_24>
+  64:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  68:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+  6c:	0c 94 55 00 	jmp	0xaa	; 0xaa <__bad_interrupt>
+
+00000070 <__ctors_end>:
+  70:	11 24       	eor	r1, r1
+  72:	1f be       	out	0x3f, r1	; 63
+  74:	cf ef       	ldi	r28, 0xFF	; 255
+  76:	d0 e1       	ldi	r29, 0x10	; 16
+  78:	de bf       	out	0x3e, r29	; 62
+  7a:	cd bf       	out	0x3d, r28	; 61
+
+0000007c <__do_copy_data>:
+  7c:	11 e0       	ldi	r17, 0x01	; 1
+  7e:	a0 e0       	ldi	r26, 0x00	; 0
+  80:	b1 e0       	ldi	r27, 0x01	; 1
+  82:	ec ee       	ldi	r30, 0xEC	; 236
+  84:	f5 e0       	ldi	r31, 0x05	; 5
+  86:	02 c0       	rjmp	.+4      	; 0x8c <__do_copy_data+0x10>
+  88:	05 90       	lpm	r0, Z+
+  8a:	0d 92       	st	X+, r0
+  8c:	ac 30       	cpi	r26, 0x0C	; 12
+  8e:	b1 07       	cpc	r27, r17
+  90:	d9 f7       	brne	.-10     	; 0x88 <__do_copy_data+0xc>
+
+00000092 <__do_clear_bss>:
+  92:	21 e0       	ldi	r18, 0x01	; 1
+  94:	ac e0       	ldi	r26, 0x0C	; 12
+  96:	b1 e0       	ldi	r27, 0x01	; 1
+  98:	01 c0       	rjmp	.+2      	; 0x9c <.do_clear_bss_start>
+
+0000009a <.do_clear_bss_loop>:
+  9a:	1d 92       	st	X+, r1
+
+0000009c <.do_clear_bss_start>:
+  9c:	a3 32       	cpi	r26, 0x23	; 35
+  9e:	b2 07       	cpc	r27, r18
+  a0:	e1 f7       	brne	.-8      	; 0x9a <.do_clear_bss_loop>
+  a2:	0e 94 a0 02 	call	0x540	; 0x540 <main>
+  a6:	0c 94 f4 02 	jmp	0x5e8	; 0x5e8 <_exit>
+
+000000aa <__bad_interrupt>:
+  aa:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000ae <__vector_24>:
+int adc[7] = {0, 0, 0, 0, 0, 0, 0};
+char pwm[5] = {0, 0, 0, 0, 0};
+char spi[3] = {0, 0, 0};
+bool adc_sec;
+
+ISR(ADC_vect) {
+  ae:	1f 92       	push	r1
+  b0:	0f 92       	push	r0
+  b2:	0f b6       	in	r0, 0x3f	; 63
+  b4:	0f 92       	push	r0
+  b6:	11 24       	eor	r1, r1
+  b8:	2f 93       	push	r18
+  ba:	8f 93       	push	r24
+  bc:	9f 93       	push	r25
+  be:	af 93       	push	r26
+  c0:	bf 93       	push	r27
+  c2:	ef 93       	push	r30
+  c4:	ff 93       	push	r31
+	if(adc_sec) {
+  c6:	80 91 0c 01 	lds	r24, 0x010C	; 0x80010c <__data_end>
+  ca:	88 23       	and	r24, r24
+  cc:	d9 f0       	breq	.+54     	; 0x104 <__vector_24+0x56>
+		int adc_l = ADCL;
+  ce:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <__DATA_REGION_ORIGIN__+0x18>
+		int adc_h = ADCH;
+  d2:	20 91 79 00 	lds	r18, 0x0079	; 0x800079 <__DATA_REGION_ORIGIN__+0x19>
+		adc[ADMUX + 1] = adc_l | (adc_h << 8);
+  d6:	ac e7       	ldi	r26, 0x7C	; 124
+  d8:	b0 e0       	ldi	r27, 0x00	; 0
+  da:	ec 91       	ld	r30, X
+  dc:	f0 e0       	ldi	r31, 0x00	; 0
+  de:	ee 0f       	add	r30, r30
+  e0:	ff 1f       	adc	r31, r31
+  e2:	e9 5e       	subi	r30, 0xE9	; 233
+  e4:	fe 4f       	sbci	r31, 0xFE	; 254
+  e6:	90 e0       	ldi	r25, 0x00	; 0
+  e8:	92 2b       	or	r25, r18
+  ea:	91 83       	std	Z+1, r25	; 0x01
+  ec:	80 83       	st	Z, r24
+		ADMUX = (ADMUX < 7) ? (ADMUX + 1) : 1;
+  ee:	8c 91       	ld	r24, X
+  f0:	87 30       	cpi	r24, 0x07	; 7
+  f2:	20 f4       	brcc	.+8      	; 0xfc <__vector_24+0x4e>
+  f4:	80 91 7c 00 	lds	r24, 0x007C	; 0x80007c <__DATA_REGION_ORIGIN__+0x1c>
+  f8:	8f 5f       	subi	r24, 0xFF	; 255
+  fa:	01 c0       	rjmp	.+2      	; 0xfe <__vector_24+0x50>
+  fc:	81 e0       	ldi	r24, 0x01	; 1
+  fe:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__DATA_REGION_ORIGIN__+0x1c>
+ 102:	04 c0       	rjmp	.+8      	; 0x10c <__vector_24+0x5e>
+		} else {
+		ADCL;
+ 104:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <__DATA_REGION_ORIGIN__+0x18>
+		ADCH;
+ 108:	80 91 79 00 	lds	r24, 0x0079	; 0x800079 <__DATA_REGION_ORIGIN__+0x19>
+	} ADCSRA |= (1 << ADSC) | (1 << ADIF);
+ 10c:	ea e7       	ldi	r30, 0x7A	; 122
+ 10e:	f0 e0       	ldi	r31, 0x00	; 0
+ 110:	80 81       	ld	r24, Z
+ 112:	80 65       	ori	r24, 0x50	; 80
+ 114:	80 83       	st	Z, r24
+	adc_sec = !adc_sec;
+ 116:	90 91 0c 01 	lds	r25, 0x010C	; 0x80010c <__data_end>
+ 11a:	81 e0       	ldi	r24, 0x01	; 1
+ 11c:	89 27       	eor	r24, r25
+ 11e:	80 93 0c 01 	sts	0x010C, r24	; 0x80010c <__data_end>
+}
+ 122:	ff 91       	pop	r31
+ 124:	ef 91       	pop	r30
+ 126:	bf 91       	pop	r27
+ 128:	af 91       	pop	r26
+ 12a:	9f 91       	pop	r25
+ 12c:	8f 91       	pop	r24
+ 12e:	2f 91       	pop	r18
+ 130:	0f 90       	pop	r0
+ 132:	0f be       	out	0x3f, r0	; 63
+ 134:	0f 90       	pop	r0
+ 136:	1f 90       	pop	r1
+ 138:	18 95       	reti
+
+0000013a <__vector_19>:
+
+ISR(SPI_STC_vect) {
+ 13a:	1f 92       	push	r1
+ 13c:	0f 92       	push	r0
+ 13e:	0f b6       	in	r0, 0x3f	; 63
+ 140:	0f 92       	push	r0
+ 142:	11 24       	eor	r1, r1
+ 144:	2f 93       	push	r18
+ 146:	3f 93       	push	r19
+ 148:	4f 93       	push	r20
+ 14a:	5f 93       	push	r21
+ 14c:	6f 93       	push	r22
+ 14e:	7f 93       	push	r23
+ 150:	8f 93       	push	r24
+ 152:	9f 93       	push	r25
+ 154:	af 93       	push	r26
+ 156:	bf 93       	push	r27
+ 158:	ef 93       	push	r30
+ 15a:	ff 93       	push	r31
+	if(spi[0] == 0) {
+ 15c:	80 91 0d 01 	lds	r24, 0x010D	; 0x80010d <spi>
+ 160:	81 11       	cpse	r24, r1
+ 162:	05 c0       	rjmp	.+10     	; 0x16e <__vector_19+0x34>
+		spi[2] = SPDR;
+ 164:	9e b5       	in	r25, 0x2e	; 46
+ 166:	ed e0       	ldi	r30, 0x0D	; 13
+ 168:	f1 e0       	ldi	r31, 0x01	; 1
+ 16a:	92 83       	std	Z+2, r25	; 0x02
+		spi[1] = 0;
+ 16c:	11 82       	std	Z+1, r1	; 0x01
+		} if(spi[2] >= 0x00 && spi[2] < 0x0B) {
+ 16e:	e0 91 0f 01 	lds	r30, 0x010F	; 0x80010f <spi+0x2>
+ 172:	eb 30       	cpi	r30, 0x0B	; 11
+ 174:	e0 f5       	brcc	.+120    	; 0x1ee <__vector_19+0xb4>
+		char loc = iomap[SPDR & 0x0F];
+ 176:	ee b5       	in	r30, 0x2e	; 46
+ 178:	ef 70       	andi	r30, 0x0F	; 15
+ 17a:	f0 e0       	ldi	r31, 0x00	; 0
+ 17c:	e0 50       	subi	r30, 0x00	; 0
+ 17e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 180:	80 81       	ld	r24, Z
+ 182:	98 2f       	mov	r25, r24
+ 184:	90 7f       	andi	r25, 0xF0	; 240
+		if((loc & 0xF0) == 0xA0) DDRA &= ~(1 << (loc & 0x0F));
+ 186:	90 3a       	cpi	r25, 0xA0	; 160
+ 188:	79 f4       	brne	.+30     	; 0x1a8 <__vector_19+0x6e>
+ 18a:	41 b1       	in	r20, 0x01	; 1
+ 18c:	8f 70       	andi	r24, 0x0F	; 15
+ 18e:	21 e0       	ldi	r18, 0x01	; 1
+ 190:	30 e0       	ldi	r19, 0x00	; 0
+ 192:	b9 01       	movw	r22, r18
+ 194:	02 c0       	rjmp	.+4      	; 0x19a <__vector_19+0x60>
+ 196:	66 0f       	add	r22, r22
+ 198:	77 1f       	adc	r23, r23
+ 19a:	8a 95       	dec	r24
+ 19c:	e2 f7       	brpl	.-8      	; 0x196 <__vector_19+0x5c>
+ 19e:	cb 01       	movw	r24, r22
+ 1a0:	80 95       	com	r24
+ 1a2:	84 23       	and	r24, r20
+ 1a4:	81 b9       	out	0x01, r24	; 1
+ 1a6:	21 c0       	rjmp	.+66     	; 0x1ea <__vector_19+0xb0>
+		else if((loc & 0xF0) == 0xC0) DDRC &= ~(1 << (loc & 0x0F));
+ 1a8:	90 3c       	cpi	r25, 0xC0	; 192
+ 1aa:	79 f4       	brne	.+30     	; 0x1ca <__vector_19+0x90>
+ 1ac:	47 b1       	in	r20, 0x07	; 7
+ 1ae:	8f 70       	andi	r24, 0x0F	; 15
+ 1b0:	21 e0       	ldi	r18, 0x01	; 1
+ 1b2:	30 e0       	ldi	r19, 0x00	; 0
+ 1b4:	b9 01       	movw	r22, r18
+ 1b6:	02 c0       	rjmp	.+4      	; 0x1bc <__vector_19+0x82>
+ 1b8:	66 0f       	add	r22, r22
+ 1ba:	77 1f       	adc	r23, r23
+ 1bc:	8a 95       	dec	r24
+ 1be:	e2 f7       	brpl	.-8      	; 0x1b8 <__vector_19+0x7e>
+ 1c0:	cb 01       	movw	r24, r22
+ 1c2:	80 95       	com	r24
+ 1c4:	84 23       	and	r24, r20
+ 1c6:	87 b9       	out	0x07, r24	; 7
+ 1c8:	10 c0       	rjmp	.+32     	; 0x1ea <__vector_19+0xb0>
+		else if((loc & 0xF0) == 0xD0) DDRD &= ~(1 << (loc & 0x0F));
+ 1ca:	90 3d       	cpi	r25, 0xD0	; 208
+ 1cc:	71 f4       	brne	.+28     	; 0x1ea <__vector_19+0xb0>
+ 1ce:	4a b1       	in	r20, 0x0a	; 10
+ 1d0:	8f 70       	andi	r24, 0x0F	; 15
+ 1d2:	21 e0       	ldi	r18, 0x01	; 1
+ 1d4:	30 e0       	ldi	r19, 0x00	; 0
+ 1d6:	b9 01       	movw	r22, r18
+ 1d8:	02 c0       	rjmp	.+4      	; 0x1de <__vector_19+0xa4>
+ 1da:	66 0f       	add	r22, r22
+ 1dc:	77 1f       	adc	r23, r23
+ 1de:	8a 95       	dec	r24
+ 1e0:	e2 f7       	brpl	.-8      	; 0x1da <__vector_19+0xa0>
+ 1e2:	cb 01       	movw	r24, r22
+ 1e4:	80 95       	com	r24
+ 1e6:	84 23       	and	r24, r20
+ 1e8:	8a b9       	out	0x0a, r24	; 10
+		SPDR = 0x00;
+ 1ea:	1e bc       	out	0x2e, r1	; 46
+ 1ec:	8a c1       	rjmp	.+788    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
+		} else if(spi[2] >= 0x10 && spi[2] < 0x1B) {
+ 1ee:	90 ef       	ldi	r25, 0xF0	; 240
+ 1f0:	9e 0f       	add	r25, r30
+ 1f2:	9b 30       	cpi	r25, 0x0B	; 11
+ 1f4:	c8 f5       	brcc	.+114    	; 0x268 <__vector_19+0x12e>
+		char loc = iomap[SPDR & 0x0F];
+ 1f6:	ee b5       	in	r30, 0x2e	; 46
+ 1f8:	ef 70       	andi	r30, 0x0F	; 15
+ 1fa:	f0 e0       	ldi	r31, 0x00	; 0
+ 1fc:	e0 50       	subi	r30, 0x00	; 0
+ 1fe:	ff 4f       	sbci	r31, 0xFF	; 255
+ 200:	80 81       	ld	r24, Z
+ 202:	98 2f       	mov	r25, r24
+ 204:	90 7f       	andi	r25, 0xF0	; 240
+		if((loc & 0xF0) == 0xA0) DDRA |= (1 << (loc & 0x0F));
+ 206:	90 3a       	cpi	r25, 0xA0	; 160
+ 208:	71 f4       	brne	.+28     	; 0x226 <__vector_19+0xec>
+ 20a:	41 b1       	in	r20, 0x01	; 1
+ 20c:	8f 70       	andi	r24, 0x0F	; 15
+ 20e:	21 e0       	ldi	r18, 0x01	; 1
+ 210:	30 e0       	ldi	r19, 0x00	; 0
+ 212:	b9 01       	movw	r22, r18
+ 214:	02 c0       	rjmp	.+4      	; 0x21a <__vector_19+0xe0>
+ 216:	66 0f       	add	r22, r22
+ 218:	77 1f       	adc	r23, r23
+ 21a:	8a 95       	dec	r24
+ 21c:	e2 f7       	brpl	.-8      	; 0x216 <__vector_19+0xdc>
+ 21e:	cb 01       	movw	r24, r22
+ 220:	84 2b       	or	r24, r20
+ 222:	81 b9       	out	0x01, r24	; 1
+ 224:	1f c0       	rjmp	.+62     	; 0x264 <__vector_19+0x12a>
+		else if((loc & 0xF0) == 0xC0) DDRC |= (1 << (loc & 0x0F));
+ 226:	90 3c       	cpi	r25, 0xC0	; 192
+ 228:	71 f4       	brne	.+28     	; 0x246 <__vector_19+0x10c>
+ 22a:	47 b1       	in	r20, 0x07	; 7
+ 22c:	8f 70       	andi	r24, 0x0F	; 15
+ 22e:	21 e0       	ldi	r18, 0x01	; 1
+ 230:	30 e0       	ldi	r19, 0x00	; 0
+ 232:	b9 01       	movw	r22, r18
+ 234:	02 c0       	rjmp	.+4      	; 0x23a <__vector_19+0x100>
+ 236:	66 0f       	add	r22, r22
+ 238:	77 1f       	adc	r23, r23
+ 23a:	8a 95       	dec	r24
+ 23c:	e2 f7       	brpl	.-8      	; 0x236 <__vector_19+0xfc>
+ 23e:	cb 01       	movw	r24, r22
+ 240:	84 2b       	or	r24, r20
+ 242:	87 b9       	out	0x07, r24	; 7
+ 244:	0f c0       	rjmp	.+30     	; 0x264 <__vector_19+0x12a>
+		else if((loc & 0xF0) == 0xD0) DDRD |= (1 << (loc & 0x0F));
+ 246:	90 3d       	cpi	r25, 0xD0	; 208
+ 248:	69 f4       	brne	.+26     	; 0x264 <__vector_19+0x12a>
+ 24a:	4a b1       	in	r20, 0x0a	; 10
+ 24c:	8f 70       	andi	r24, 0x0F	; 15
+ 24e:	21 e0       	ldi	r18, 0x01	; 1
+ 250:	30 e0       	ldi	r19, 0x00	; 0
+ 252:	b9 01       	movw	r22, r18
+ 254:	02 c0       	rjmp	.+4      	; 0x25a <__vector_19+0x120>
+ 256:	66 0f       	add	r22, r22
+ 258:	77 1f       	adc	r23, r23
+ 25a:	8a 95       	dec	r24
+ 25c:	e2 f7       	brpl	.-8      	; 0x256 <__vector_19+0x11c>
+ 25e:	cb 01       	movw	r24, r22
+ 260:	84 2b       	or	r24, r20
+ 262:	8a b9       	out	0x0a, r24	; 10
+		SPDR = 0x00;
+ 264:	1e bc       	out	0x2e, r1	; 46
+ 266:	4d c1       	rjmp	.+666    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
+		} else if(spi[2] >= 0x20 && spi[2] < 0x2B) {
+ 268:	90 ee       	ldi	r25, 0xE0	; 224
+ 26a:	9e 0f       	add	r25, r30
+ 26c:	9b 30       	cpi	r25, 0x0B	; 11
+ 26e:	e0 f5       	brcc	.+120    	; 0x2e8 <__vector_19+0x1ae>
+		char loc = iomap[SPDR & 0x0F];
+ 270:	ee b5       	in	r30, 0x2e	; 46
+ 272:	ef 70       	andi	r30, 0x0F	; 15
+ 274:	f0 e0       	ldi	r31, 0x00	; 0
+ 276:	e0 50       	subi	r30, 0x00	; 0
+ 278:	ff 4f       	sbci	r31, 0xFF	; 255
+ 27a:	80 81       	ld	r24, Z
+ 27c:	98 2f       	mov	r25, r24
+ 27e:	90 7f       	andi	r25, 0xF0	; 240
+		if((loc & 0xF0) == 0xA0) PORTA &= ~(1 << (loc & 0x0F));
+ 280:	90 3a       	cpi	r25, 0xA0	; 160
+ 282:	79 f4       	brne	.+30     	; 0x2a2 <__vector_19+0x168>
+ 284:	42 b1       	in	r20, 0x02	; 2
+ 286:	8f 70       	andi	r24, 0x0F	; 15
+ 288:	21 e0       	ldi	r18, 0x01	; 1
+ 28a:	30 e0       	ldi	r19, 0x00	; 0
+ 28c:	b9 01       	movw	r22, r18
+ 28e:	02 c0       	rjmp	.+4      	; 0x294 <__vector_19+0x15a>
+ 290:	66 0f       	add	r22, r22
+ 292:	77 1f       	adc	r23, r23
+ 294:	8a 95       	dec	r24
+ 296:	e2 f7       	brpl	.-8      	; 0x290 <__vector_19+0x156>
+ 298:	cb 01       	movw	r24, r22
+ 29a:	80 95       	com	r24
+ 29c:	84 23       	and	r24, r20
+ 29e:	82 b9       	out	0x02, r24	; 2
+ 2a0:	21 c0       	rjmp	.+66     	; 0x2e4 <__vector_19+0x1aa>
+		else if((loc & 0xF0) == 0xC0) PORTC &= ~(1 << (loc & 0x0F));
+ 2a2:	90 3c       	cpi	r25, 0xC0	; 192
+ 2a4:	79 f4       	brne	.+30     	; 0x2c4 <__vector_19+0x18a>
+ 2a6:	48 b1       	in	r20, 0x08	; 8
+ 2a8:	8f 70       	andi	r24, 0x0F	; 15
+ 2aa:	21 e0       	ldi	r18, 0x01	; 1
+ 2ac:	30 e0       	ldi	r19, 0x00	; 0
+ 2ae:	b9 01       	movw	r22, r18
+ 2b0:	02 c0       	rjmp	.+4      	; 0x2b6 <__vector_19+0x17c>
+ 2b2:	66 0f       	add	r22, r22
+ 2b4:	77 1f       	adc	r23, r23
+ 2b6:	8a 95       	dec	r24
+ 2b8:	e2 f7       	brpl	.-8      	; 0x2b2 <__vector_19+0x178>
+ 2ba:	cb 01       	movw	r24, r22
+ 2bc:	80 95       	com	r24
+ 2be:	84 23       	and	r24, r20
+ 2c0:	88 b9       	out	0x08, r24	; 8
+ 2c2:	10 c0       	rjmp	.+32     	; 0x2e4 <__vector_19+0x1aa>
+		else if((loc & 0xF0) == 0xD0) PORTD &= ~(1 << (loc & 0x0F));
+ 2c4:	90 3d       	cpi	r25, 0xD0	; 208
+ 2c6:	71 f4       	brne	.+28     	; 0x2e4 <__vector_19+0x1aa>
+ 2c8:	4b b1       	in	r20, 0x0b	; 11
+ 2ca:	8f 70       	andi	r24, 0x0F	; 15
+ 2cc:	21 e0       	ldi	r18, 0x01	; 1
+ 2ce:	30 e0       	ldi	r19, 0x00	; 0
+ 2d0:	b9 01       	movw	r22, r18
+ 2d2:	02 c0       	rjmp	.+4      	; 0x2d8 <__vector_19+0x19e>
+ 2d4:	66 0f       	add	r22, r22
+ 2d6:	77 1f       	adc	r23, r23
+ 2d8:	8a 95       	dec	r24
+ 2da:	e2 f7       	brpl	.-8      	; 0x2d4 <__vector_19+0x19a>
+ 2dc:	cb 01       	movw	r24, r22
+ 2de:	80 95       	com	r24
+ 2e0:	84 23       	and	r24, r20
+ 2e2:	8b b9       	out	0x0b, r24	; 11
+		SPDR = 0x00;
+ 2e4:	1e bc       	out	0x2e, r1	; 46
+ 2e6:	0d c1       	rjmp	.+538    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
+		} else if(spi[2] >= 0x30 && spi[2] < 0x3B) {
+ 2e8:	90 ed       	ldi	r25, 0xD0	; 208
+ 2ea:	9e 0f       	add	r25, r30
+ 2ec:	9b 30       	cpi	r25, 0x0B	; 11
+ 2ee:	c8 f5       	brcc	.+114    	; 0x362 <__vector_19+0x228>
+		char loc = iomap[SPDR & 0x0F];
+ 2f0:	ee b5       	in	r30, 0x2e	; 46
+ 2f2:	ef 70       	andi	r30, 0x0F	; 15
+ 2f4:	f0 e0       	ldi	r31, 0x00	; 0
+ 2f6:	e0 50       	subi	r30, 0x00	; 0
+ 2f8:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2fa:	80 81       	ld	r24, Z
+ 2fc:	98 2f       	mov	r25, r24
+ 2fe:	90 7f       	andi	r25, 0xF0	; 240
+		if((loc & 0xF0) == 0xA0) PORTA |= (1 << (loc & 0x0F));
+ 300:	90 3a       	cpi	r25, 0xA0	; 160
+ 302:	71 f4       	brne	.+28     	; 0x320 <__vector_19+0x1e6>
+ 304:	42 b1       	in	r20, 0x02	; 2
+ 306:	8f 70       	andi	r24, 0x0F	; 15
+ 308:	21 e0       	ldi	r18, 0x01	; 1
+ 30a:	30 e0       	ldi	r19, 0x00	; 0
+ 30c:	b9 01       	movw	r22, r18
+ 30e:	02 c0       	rjmp	.+4      	; 0x314 <__vector_19+0x1da>
+ 310:	66 0f       	add	r22, r22
+ 312:	77 1f       	adc	r23, r23
+ 314:	8a 95       	dec	r24
+ 316:	e2 f7       	brpl	.-8      	; 0x310 <__vector_19+0x1d6>
+ 318:	cb 01       	movw	r24, r22
+ 31a:	84 2b       	or	r24, r20
+ 31c:	82 b9       	out	0x02, r24	; 2
+ 31e:	1f c0       	rjmp	.+62     	; 0x35e <__vector_19+0x224>
+		else if((loc & 0xF0) == 0xC0) PORTC |= (1 << (loc & 0x0F));
+ 320:	90 3c       	cpi	r25, 0xC0	; 192
+ 322:	71 f4       	brne	.+28     	; 0x340 <__vector_19+0x206>
+ 324:	48 b1       	in	r20, 0x08	; 8
+ 326:	8f 70       	andi	r24, 0x0F	; 15
+ 328:	21 e0       	ldi	r18, 0x01	; 1
+ 32a:	30 e0       	ldi	r19, 0x00	; 0
+ 32c:	b9 01       	movw	r22, r18
+ 32e:	02 c0       	rjmp	.+4      	; 0x334 <__vector_19+0x1fa>
+ 330:	66 0f       	add	r22, r22
+ 332:	77 1f       	adc	r23, r23
+ 334:	8a 95       	dec	r24
+ 336:	e2 f7       	brpl	.-8      	; 0x330 <__vector_19+0x1f6>
+ 338:	cb 01       	movw	r24, r22
+ 33a:	84 2b       	or	r24, r20
+ 33c:	88 b9       	out	0x08, r24	; 8
+ 33e:	0f c0       	rjmp	.+30     	; 0x35e <__vector_19+0x224>
+		else if((loc & 0xF0) == 0xD0) PORTD |= (1 << (loc & 0x0F));
+ 340:	90 3d       	cpi	r25, 0xD0	; 208
+ 342:	69 f4       	brne	.+26     	; 0x35e <__vector_19+0x224>
+ 344:	4b b1       	in	r20, 0x0b	; 11
+ 346:	8f 70       	andi	r24, 0x0F	; 15
+ 348:	21 e0       	ldi	r18, 0x01	; 1
+ 34a:	30 e0       	ldi	r19, 0x00	; 0
+ 34c:	b9 01       	movw	r22, r18
+ 34e:	02 c0       	rjmp	.+4      	; 0x354 <__vector_19+0x21a>
+ 350:	66 0f       	add	r22, r22
+ 352:	77 1f       	adc	r23, r23
+ 354:	8a 95       	dec	r24
+ 356:	e2 f7       	brpl	.-8      	; 0x350 <__vector_19+0x216>
+ 358:	cb 01       	movw	r24, r22
+ 35a:	84 2b       	or	r24, r20
+ 35c:	8b b9       	out	0x0b, r24	; 11
+		SPDR = 0x00;
+ 35e:	1e bc       	out	0x2e, r1	; 46
+ 360:	d0 c0       	rjmp	.+416    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
+		} else if(spi[2] >= 0x40 && spi[2] < 0x4B) {
+ 362:	90 ec       	ldi	r25, 0xC0	; 192
+ 364:	9e 0f       	add	r25, r30
+ 366:	9b 30       	cpi	r25, 0x0B	; 11
+ 368:	f0 f5       	brcc	.+124    	; 0x3e6 <__vector_19+0x2ac>
+		spi[1] = 1;
+ 36a:	91 e0       	ldi	r25, 0x01	; 1
+ 36c:	90 93 0e 01 	sts	0x010E, r25	; 0x80010e <spi+0x1>
+		if(spi[0] == 0) {
+ 370:	81 11       	cpse	r24, r1
+ 372:	37 c0       	rjmp	.+110    	; 0x3e2 <__vector_19+0x2a8>
+			char loc = iomap[SPDR & 0x0F];
+ 374:	ee b5       	in	r30, 0x2e	; 46
+ 376:	ef 70       	andi	r30, 0x0F	; 15
+ 378:	f0 e0       	ldi	r31, 0x00	; 0
+ 37a:	e0 50       	subi	r30, 0x00	; 0
+ 37c:	ff 4f       	sbci	r31, 0xFF	; 255
+ 37e:	80 81       	ld	r24, Z
+ 380:	98 2f       	mov	r25, r24
+ 382:	90 7f       	andi	r25, 0xF0	; 240
+			if((loc & 0xF0) == 0xA0) SPDR = PINA  >> (loc & 0x0F) & 1;
+ 384:	90 3a       	cpi	r25, 0xA0	; 160
+ 386:	69 f4       	brne	.+26     	; 0x3a2 <__vector_19+0x268>
+ 388:	20 b1       	in	r18, 0x00	; 0
+ 38a:	30 e0       	ldi	r19, 0x00	; 0
+ 38c:	8f 70       	andi	r24, 0x0F	; 15
+ 38e:	a9 01       	movw	r20, r18
+ 390:	02 c0       	rjmp	.+4      	; 0x396 <__vector_19+0x25c>
+ 392:	55 95       	asr	r21
+ 394:	47 95       	ror	r20
+ 396:	8a 95       	dec	r24
+ 398:	e2 f7       	brpl	.-8      	; 0x392 <__vector_19+0x258>
+ 39a:	ca 01       	movw	r24, r20
+ 39c:	81 70       	andi	r24, 0x01	; 1
+ 39e:	8e bd       	out	0x2e, r24	; 46
+ 3a0:	b0 c0       	rjmp	.+352    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
+			else if((loc & 0xF0) == 0xC0) SPDR = PINC  >> (loc & 0x0F) & 1;
+ 3a2:	90 3c       	cpi	r25, 0xC0	; 192
+ 3a4:	69 f4       	brne	.+26     	; 0x3c0 <__vector_19+0x286>
+ 3a6:	26 b1       	in	r18, 0x06	; 6
+ 3a8:	30 e0       	ldi	r19, 0x00	; 0
+ 3aa:	8f 70       	andi	r24, 0x0F	; 15
+ 3ac:	b9 01       	movw	r22, r18
+ 3ae:	02 c0       	rjmp	.+4      	; 0x3b4 <__vector_19+0x27a>
+ 3b0:	75 95       	asr	r23
+ 3b2:	67 95       	ror	r22
+ 3b4:	8a 95       	dec	r24
+ 3b6:	e2 f7       	brpl	.-8      	; 0x3b0 <__vector_19+0x276>
+ 3b8:	cb 01       	movw	r24, r22
+ 3ba:	81 70       	andi	r24, 0x01	; 1
+ 3bc:	8e bd       	out	0x2e, r24	; 46
+ 3be:	a1 c0       	rjmp	.+322    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
+			else if((loc & 0xF0) == 0xD0) SPDR = PIND  >> (loc & 0x0F) & 1;
+ 3c0:	90 3d       	cpi	r25, 0xD0	; 208
+ 3c2:	69 f4       	brne	.+26     	; 0x3de <__vector_19+0x2a4>
+ 3c4:	29 b1       	in	r18, 0x09	; 9
+ 3c6:	30 e0       	ldi	r19, 0x00	; 0
+ 3c8:	8f 70       	andi	r24, 0x0F	; 15
+ 3ca:	a9 01       	movw	r20, r18
+ 3cc:	02 c0       	rjmp	.+4      	; 0x3d2 <__vector_19+0x298>
+ 3ce:	55 95       	asr	r21
+ 3d0:	47 95       	ror	r20
+ 3d2:	8a 95       	dec	r24
+ 3d4:	e2 f7       	brpl	.-8      	; 0x3ce <__vector_19+0x294>
+ 3d6:	ca 01       	movw	r24, r20
+ 3d8:	81 70       	andi	r24, 0x01	; 1
+ 3da:	8e bd       	out	0x2e, r24	; 46
+ 3dc:	92 c0       	rjmp	.+292    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
+			else SPDR = 0x00;
+ 3de:	1e bc       	out	0x2e, r1	; 46
+ 3e0:	90 c0       	rjmp	.+288    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
+		} else SPDR = 0x00;
+ 3e2:	1e bc       	out	0x2e, r1	; 46
+ 3e4:	8e c0       	rjmp	.+284    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
+		} else if(spi[2] >= 0x50 && spi[2] < 0x57) {
+ 3e6:	90 eb       	ldi	r25, 0xB0	; 176
+ 3e8:	9e 0f       	add	r25, r30
+ 3ea:	97 30       	cpi	r25, 0x07	; 7
+ 3ec:	d8 f4       	brcc	.+54     	; 0x424 <__LOCK_REGION_LENGTH__+0x24>
+		spi[1] = 2;
+ 3ee:	92 e0       	ldi	r25, 0x02	; 2
+ 3f0:	90 93 0e 01 	sts	0x010E, r25	; 0x80010e <spi+0x1>
+		if(spi[0] == 0) SPDR = adc[spi[2] & 0x0F] >> 8;
+ 3f4:	81 11       	cpse	r24, r1
+ 3f6:	09 c0       	rjmp	.+18     	; 0x40a <__LOCK_REGION_LENGTH__+0xa>
+ 3f8:	ef 70       	andi	r30, 0x0F	; 15
+ 3fa:	f0 e0       	ldi	r31, 0x00	; 0
+ 3fc:	ee 0f       	add	r30, r30
+ 3fe:	ff 1f       	adc	r31, r31
+ 400:	eb 5e       	subi	r30, 0xEB	; 235
+ 402:	fe 4f       	sbci	r31, 0xFE	; 254
+ 404:	81 81       	ldd	r24, Z+1	; 0x01
+ 406:	8e bd       	out	0x2e, r24	; 46
+ 408:	7c c0       	rjmp	.+248    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
+		else if(spi[0] == 1) SPDR = adc[spi[2] & 0x0F] & 0xFF;
+ 40a:	81 30       	cpi	r24, 0x01	; 1
+ 40c:	49 f4       	brne	.+18     	; 0x420 <__LOCK_REGION_LENGTH__+0x20>
+ 40e:	ef 70       	andi	r30, 0x0F	; 15
+ 410:	f0 e0       	ldi	r31, 0x00	; 0
+ 412:	ee 0f       	add	r30, r30
+ 414:	ff 1f       	adc	r31, r31
+ 416:	eb 5e       	subi	r30, 0xEB	; 235
+ 418:	fe 4f       	sbci	r31, 0xFE	; 254
+ 41a:	80 81       	ld	r24, Z
+ 41c:	8e bd       	out	0x2e, r24	; 46
+ 41e:	71 c0       	rjmp	.+226    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
+		else SPDR = 0x00;
+ 420:	1e bc       	out	0x2e, r1	; 46
+ 422:	6f c0       	rjmp	.+222    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
+		}  else if(spi[2] >= 0x60 && spi[2] < 0x64) {
+ 424:	90 ea       	ldi	r25, 0xA0	; 160
+ 426:	9e 0f       	add	r25, r30
+ 428:	94 30       	cpi	r25, 0x04	; 4
+ 42a:	d0 f4       	brcc	.+52     	; 0x460 <__LOCK_REGION_LENGTH__+0x60>
+		pwm[spi[2] & 0x0F] = 0;
+ 42c:	ef 70       	andi	r30, 0x0F	; 15
+ 42e:	8e 2f       	mov	r24, r30
+ 430:	90 e0       	ldi	r25, 0x00	; 0
+ 432:	e0 e1       	ldi	r30, 0x10	; 16
+ 434:	f1 e0       	ldi	r31, 0x01	; 1
+ 436:	dc 01       	movw	r26, r24
+ 438:	a0 5f       	subi	r26, 0xF0	; 240
+ 43a:	be 4f       	sbci	r27, 0xFE	; 254
+ 43c:	1c 92       	st	X, r1
+		pwm[4] &= ~(3 << ((spi[2] & 0x0F) * 2));
+ 43e:	88 0f       	add	r24, r24
+ 440:	99 1f       	adc	r25, r25
+ 442:	23 e0       	ldi	r18, 0x03	; 3
+ 444:	30 e0       	ldi	r19, 0x00	; 0
+ 446:	b9 01       	movw	r22, r18
+ 448:	02 c0       	rjmp	.+4      	; 0x44e <__LOCK_REGION_LENGTH__+0x4e>
+ 44a:	66 0f       	add	r22, r22
+ 44c:	77 1f       	adc	r23, r23
+ 44e:	8a 95       	dec	r24
+ 450:	e2 f7       	brpl	.-8      	; 0x44a <__LOCK_REGION_LENGTH__+0x4a>
+ 452:	cb 01       	movw	r24, r22
+ 454:	80 95       	com	r24
+ 456:	94 81       	ldd	r25, Z+4	; 0x04
+ 458:	89 23       	and	r24, r25
+ 45a:	84 83       	std	Z+4, r24	; 0x04
+		SPDR = 0x00;
+ 45c:	1e bc       	out	0x2e, r1	; 46
+ 45e:	51 c0       	rjmp	.+162    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
+		}  else if(spi[2] >= 0x64 && spi[2] < 0x6C) {
+ 460:	9c e9       	ldi	r25, 0x9C	; 156
+ 462:	9e 0f       	add	r25, r30
+ 464:	98 30       	cpi	r25, 0x08	; 8
+ 466:	60 f5       	brcc	.+88     	; 0x4c0 <__LOCK_REGION_LENGTH__+0xc0>
+		spi[1] = 1;
+ 468:	91 e0       	ldi	r25, 0x01	; 1
+ 46a:	90 93 0e 01 	sts	0x010E, r25	; 0x80010e <spi+0x1>
+		if(spi[0] == 1) {
+ 46e:	81 30       	cpi	r24, 0x01	; 1
+ 470:	29 f5       	brne	.+74     	; 0x4bc <__LOCK_REGION_LENGTH__+0xbc>
+			char off = (spi[2] & 0x0F) % 4;
+			pwm[off] = SPDR;
+ 472:	8e 2f       	mov	r24, r30
+ 474:	83 70       	andi	r24, 0x03	; 3
+ 476:	90 e0       	ldi	r25, 0x00	; 0
+ 478:	2e b5       	in	r18, 0x2e	; 46
+ 47a:	dc 01       	movw	r26, r24
+ 47c:	a0 5f       	subi	r26, 0xF0	; 240
+ 47e:	be 4f       	sbci	r27, 0xFE	; 254
+ 480:	2c 93       	st	X, r18
+			pwm[4] &= ~(3 << (off*2));
+ 482:	88 0f       	add	r24, r24
+ 484:	99 1f       	adc	r25, r25
+ 486:	23 e0       	ldi	r18, 0x03	; 3
+ 488:	30 e0       	ldi	r19, 0x00	; 0
+ 48a:	08 2e       	mov	r0, r24
+ 48c:	02 c0       	rjmp	.+4      	; 0x492 <__LOCK_REGION_LENGTH__+0x92>
+ 48e:	22 0f       	add	r18, r18
+ 490:	33 1f       	adc	r19, r19
+ 492:	0a 94       	dec	r0
+ 494:	e2 f7       	brpl	.-8      	; 0x48e <__LOCK_REGION_LENGTH__+0x8e>
+ 496:	20 95       	com	r18
+ 498:	40 91 14 01 	lds	r20, 0x0114	; 0x800114 <pwm+0x4>
+ 49c:	42 23       	and	r20, r18
+			pwm[4] |= ((spi[2] > 0x68 ? 1 : 2) << (off*2));
+ 49e:	e9 36       	cpi	r30, 0x69	; 105
+ 4a0:	18 f4       	brcc	.+6      	; 0x4a8 <__LOCK_REGION_LENGTH__+0xa8>
+ 4a2:	22 e0       	ldi	r18, 0x02	; 2
+ 4a4:	30 e0       	ldi	r19, 0x00	; 0
+ 4a6:	02 c0       	rjmp	.+4      	; 0x4ac <__LOCK_REGION_LENGTH__+0xac>
+ 4a8:	21 e0       	ldi	r18, 0x01	; 1
+ 4aa:	30 e0       	ldi	r19, 0x00	; 0
+ 4ac:	02 c0       	rjmp	.+4      	; 0x4b2 <__LOCK_REGION_LENGTH__+0xb2>
+ 4ae:	22 0f       	add	r18, r18
+ 4b0:	33 1f       	adc	r19, r19
+ 4b2:	8a 95       	dec	r24
+ 4b4:	e2 f7       	brpl	.-8      	; 0x4ae <__LOCK_REGION_LENGTH__+0xae>
+ 4b6:	24 2b       	or	r18, r20
+ 4b8:	20 93 14 01 	sts	0x0114, r18	; 0x800114 <pwm+0x4>
+		} SPDR = 0x00;
+ 4bc:	1e bc       	out	0x2e, r1	; 46
+ 4be:	21 c0       	rjmp	.+66     	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
+		}  else if(spi[2] == 0x6E) {
+ 4c0:	ee 36       	cpi	r30, 0x6E	; 110
+ 4c2:	69 f4       	brne	.+26     	; 0x4de <__LOCK_REGION_LENGTH__+0xde>
+		spi[1] = 5;
+ 4c4:	95 e0       	ldi	r25, 0x05	; 5
+ 4c6:	90 93 0e 01 	sts	0x010E, r25	; 0x80010e <spi+0x1>
+		if(spi[0] > 0) pwm[spi[0] - 1] = SPDR;
+ 4ca:	88 23       	and	r24, r24
+ 4cc:	31 f0       	breq	.+12     	; 0x4da <__LOCK_REGION_LENGTH__+0xda>
+ 4ce:	9e b5       	in	r25, 0x2e	; 46
+ 4d0:	e8 2f       	mov	r30, r24
+ 4d2:	f0 e0       	ldi	r31, 0x00	; 0
+ 4d4:	e1 5f       	subi	r30, 0xF1	; 241
+ 4d6:	fe 4f       	sbci	r31, 0xFE	; 254
+ 4d8:	90 83       	st	Z, r25
+		SPDR = 0x00;
+ 4da:	1e bc       	out	0x2e, r1	; 46
+ 4dc:	12 c0       	rjmp	.+36     	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
+		}  else if(spi[2] == 0x6F) {
+ 4de:	ef 36       	cpi	r30, 0x6F	; 111
+ 4e0:	49 f4       	brne	.+18     	; 0x4f4 <__LOCK_REGION_LENGTH__+0xf4>
+		pwm[0] = 0;
+ 4e2:	e0 e1       	ldi	r30, 0x10	; 16
+ 4e4:	f1 e0       	ldi	r31, 0x01	; 1
+ 4e6:	10 82       	st	Z, r1
+		pwm[1] = 0;
+ 4e8:	11 82       	std	Z+1, r1	; 0x01
+		pwm[2] = 0;
+ 4ea:	12 82       	std	Z+2, r1	; 0x02
+		pwm[3] = 0;
+ 4ec:	13 82       	std	Z+3, r1	; 0x03
+		pwm[4] = 0;
+ 4ee:	14 82       	std	Z+4, r1	; 0x04
+		SPDR = 0x00;
+ 4f0:	1e bc       	out	0x2e, r1	; 46
+ 4f2:	07 c0       	rjmp	.+14     	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
+		} else if(spi[2] == 0xFF) {
+ 4f4:	ef 3f       	cpi	r30, 0xFF	; 255
+ 4f6:	29 f4       	brne	.+10     	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
+		spi[1] = 1;
+ 4f8:	81 e0       	ldi	r24, 0x01	; 1
+ 4fa:	80 93 0e 01 	sts	0x010E, r24	; 0x80010e <spi+0x1>
+		SPDR = 0xAC;
+ 4fe:	8c ea       	ldi	r24, 0xAC	; 172
+ 500:	8e bd       	out	0x2e, r24	; 46
+	} spi[0] = (spi[0] < spi[1]) ? (spi[0]+1) : 0;
+ 502:	ed e0       	ldi	r30, 0x0D	; 13
+ 504:	f1 e0       	ldi	r31, 0x01	; 1
+ 506:	80 81       	ld	r24, Z
+ 508:	91 81       	ldd	r25, Z+1	; 0x01
+ 50a:	89 17       	cp	r24, r25
+ 50c:	10 f4       	brcc	.+4      	; 0x512 <__LOCK_REGION_LENGTH__+0x112>
+ 50e:	8f 5f       	subi	r24, 0xFF	; 255
+ 510:	01 c0       	rjmp	.+2      	; 0x514 <__LOCK_REGION_LENGTH__+0x114>
+ 512:	80 e0       	ldi	r24, 0x00	; 0
+ 514:	80 93 0d 01 	sts	0x010D, r24	; 0x80010d <spi>
+	if(spi[1] == 0) SPDR = 0x00;
+ 518:	91 11       	cpse	r25, r1
+ 51a:	01 c0       	rjmp	.+2      	; 0x51e <__LOCK_REGION_LENGTH__+0x11e>
+ 51c:	1e bc       	out	0x2e, r1	; 46
+}
+ 51e:	ff 91       	pop	r31
+ 520:	ef 91       	pop	r30
+ 522:	bf 91       	pop	r27
+ 524:	af 91       	pop	r26
+ 526:	9f 91       	pop	r25
+ 528:	8f 91       	pop	r24
+ 52a:	7f 91       	pop	r23
+ 52c:	6f 91       	pop	r22
+ 52e:	5f 91       	pop	r21
+ 530:	4f 91       	pop	r20
+ 532:	3f 91       	pop	r19
+ 534:	2f 91       	pop	r18
+ 536:	0f 90       	pop	r0
+ 538:	0f be       	out	0x3f, r0	; 63
+ 53a:	0f 90       	pop	r0
+ 53c:	1f 90       	pop	r1
+ 53e:	18 95       	reti
+
+00000540 <main>:
+
+int main(void) {
+	DDRA = 0x00;
+ 540:	11 b8       	out	0x01, r1	; 1
+	DDRB = 0x4F;
+ 542:	8f e4       	ldi	r24, 0x4F	; 79
+ 544:	84 b9       	out	0x04, r24	; 4
+	DDRC = 0xF0;
+ 546:	80 ef       	ldi	r24, 0xF0	; 240
+ 548:	87 b9       	out	0x07, r24	; 7
+	DDRD = 0xF0;
+ 54a:	8a b9       	out	0x0a, r24	; 10
+	
+	TCCR1A = 0b10100001;
+ 54c:	81 ea       	ldi	r24, 0xA1	; 161
+ 54e:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <__DATA_REGION_ORIGIN__+0x20>
+	TCCR1B = 0b00001010;
+ 552:	8a e0       	ldi	r24, 0x0A	; 10
+ 554:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__DATA_REGION_ORIGIN__+0x21>
+
+	TCCR2A = 0b10100011;
+ 558:	83 ea       	ldi	r24, 0xA3	; 163
+ 55a:	80 93 b0 00 	sts	0x00B0, r24	; 0x8000b0 <__DATA_REGION_ORIGIN__+0x50>
+	TCCR2B = 0b00000010;
+ 55e:	82 e0       	ldi	r24, 0x02	; 2
+ 560:	80 93 b1 00 	sts	0x00B1, r24	; 0x8000b1 <__DATA_REGION_ORIGIN__+0x51>
+
+	ADMUX = 0x00;
+ 564:	10 92 7c 00 	sts	0x007C, r1	; 0x80007c <__DATA_REGION_ORIGIN__+0x1c>
+	ADCSRA = (1 << ADEN) | (1 << ADSC) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0) | (1 << ADIE);
+ 568:	8f ec       	ldi	r24, 0xCF	; 207
+ 56a:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <__DATA_REGION_ORIGIN__+0x1a>
+	SPCR = (1<<SPE) | (1<<SPIE);
+ 56e:	80 ec       	ldi	r24, 0xC0	; 192
+ 570:	8c bd       	out	0x2c, r24	; 44
+	SPDR = 0x00;
+ 572:	1e bc       	out	0x2e, r1	; 46
+	sei();
+ 574:	78 94       	sei
+	
+	while (1) {
+		PORTB = (PORTB & 0xF0) | (pwm[4] >> 4);
+ 576:	e0 e1       	ldi	r30, 0x10	; 16
+ 578:	f1 e0       	ldi	r31, 0x01	; 1
+		PORTC = (PORTC & 0x0F) | (pwm[4] << 4);
+		OCR2A = pwm[0];
+ 57a:	43 eb       	ldi	r20, 0xB3	; 179
+ 57c:	50 e0       	ldi	r21, 0x00	; 0
+		OCR2B = pwm[1];
+ 57e:	24 eb       	ldi	r18, 0xB4	; 180
+ 580:	30 e0       	ldi	r19, 0x00	; 0
+		OCR1A = pwm[2];
+ 582:	c8 e8       	ldi	r28, 0x88	; 136
+ 584:	d0 e0       	ldi	r29, 0x00	; 0
+		OCR1B = pwm[3];
+ 586:	0f 2e       	mov	r0, r31
+ 588:	fa e8       	ldi	r31, 0x8A	; 138
+ 58a:	ef 2e       	mov	r14, r31
+ 58c:	f1 2c       	mov	r15, r1
+ 58e:	f0 2d       	mov	r31, r0
+	SPCR = (1<<SPE) | (1<<SPIE);
+	SPDR = 0x00;
+	sei();
+	
+	while (1) {
+		PORTB = (PORTB & 0xF0) | (pwm[4] >> 4);
+ 590:	15 b1       	in	r17, 0x05	; 5
+ 592:	84 81       	ldd	r24, Z+4	; 0x04
+ 594:	90 e0       	ldi	r25, 0x00	; 0
+ 596:	bc 01       	movw	r22, r24
+ 598:	75 95       	asr	r23
+ 59a:	67 95       	ror	r22
+ 59c:	75 95       	asr	r23
+ 59e:	67 95       	ror	r22
+ 5a0:	75 95       	asr	r23
+ 5a2:	67 95       	ror	r22
+ 5a4:	75 95       	asr	r23
+ 5a6:	67 95       	ror	r22
+ 5a8:	71 2f       	mov	r23, r17
+ 5aa:	70 7f       	andi	r23, 0xF0	; 240
+ 5ac:	67 2b       	or	r22, r23
+ 5ae:	65 b9       	out	0x05, r22	; 5
+		PORTC = (PORTC & 0x0F) | (pwm[4] << 4);
+ 5b0:	68 b1       	in	r22, 0x08	; 8
+ 5b2:	82 95       	swap	r24
+ 5b4:	92 95       	swap	r25
+ 5b6:	90 7f       	andi	r25, 0xF0	; 240
+ 5b8:	98 27       	eor	r25, r24
+ 5ba:	80 7f       	andi	r24, 0xF0	; 240
+ 5bc:	98 27       	eor	r25, r24
+ 5be:	96 2f       	mov	r25, r22
+ 5c0:	9f 70       	andi	r25, 0x0F	; 15
+ 5c2:	89 2b       	or	r24, r25
+ 5c4:	88 b9       	out	0x08, r24	; 8
+		OCR2A = pwm[0];
+ 5c6:	80 81       	ld	r24, Z
+ 5c8:	da 01       	movw	r26, r20
+ 5ca:	8c 93       	st	X, r24
+		OCR2B = pwm[1];
+ 5cc:	81 81       	ldd	r24, Z+1	; 0x01
+ 5ce:	d9 01       	movw	r26, r18
+ 5d0:	8c 93       	st	X, r24
+		OCR1A = pwm[2];
+ 5d2:	82 81       	ldd	r24, Z+2	; 0x02
+ 5d4:	90 e0       	ldi	r25, 0x00	; 0
+ 5d6:	99 83       	std	Y+1, r25	; 0x01
+ 5d8:	88 83       	st	Y, r24
+		OCR1B = pwm[3];
+ 5da:	83 81       	ldd	r24, Z+3	; 0x03
+ 5dc:	90 e0       	ldi	r25, 0x00	; 0
+ 5de:	d7 01       	movw	r26, r14
+ 5e0:	11 96       	adiw	r26, 0x01	; 1
+ 5e2:	9c 93       	st	X, r25
+ 5e4:	8e 93       	st	-X, r24
+ 5e6:	d4 cf       	rjmp	.-88     	; 0x590 <main+0x50>
+
+000005e8 <_exit>:
+ 5e8:	f8 94       	cli
+
+000005ea <__stop_program>:
+ 5ea:	ff cf       	rjmp	.-2      	; 0x5ea <__stop_program>
