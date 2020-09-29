@@ -1,6 +1,5 @@
-#include "lib/GPIO.hpp"
+#include "lib/LED.hpp"
 
 int main() {
-    GPIO g(21, GPIO::OUTPUT);
-    g.setLevel(true);
+   LED().set(LED::RED);
 }
