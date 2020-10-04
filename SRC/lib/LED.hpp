@@ -2,18 +2,16 @@
 #include "GPIO.hpp"
 
 class LED {
-    GPIO* red;
-    GPIO* green;
 public:
-    enum Color {oFF, RED, GREEN, YELLOW};
+    enum Color {OFF, RED, GREEN, YELLOW};
     
     LED() {
-        red = &GPIO(21,GPIO::OUTPUT);
-        green = &GPIO(20,GPIO::OUTPUT);
+       GPIO(24,GPIO::OUTPUT);
+       GPIO(25,GPIO::OUTPUT);
     }
 
     void set(Color c) {
-        red->setLevel(c & 0x01);
-        green->setLevel( c & 0x02);
+        GPIO(25).setLevel(c & 0x01);
+        GPIO(24).setLevel(c & 0x02);
     }
 };

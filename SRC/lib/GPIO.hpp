@@ -4,9 +4,15 @@ class GPIO {
     volatile unsigned int* reg;
     char id;
 public:
-
     enum Mode { INPUT, OUTPUT, ALT0 = 4, ALT1 = 5, ALT2 = 6, ALT3 = 7, ALT4 = 3, ALT5 = 2};
     enum Events { HIGH, LOW, RISING, FALLING, ASYNC_RISING, ASYNC_FALLING };
+
+    GPIO() {}
+
+    GPIO(char pin) {
+        reg = (unsigned int*) 0x20200000;
+        id = pin;
+    }
 
     GPIO(char pin, Mode mode) {
         reg = (unsigned int*) 0x20200000;

@@ -3,31 +3,31 @@ VWA.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         0000000c  00800100  000005ec  00000680  2**0
+  0 .data         0000000c  00800100  000005f0  00000684  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000005ec  00000000  00000000  00000094  2**1
+  1 .text         000005f0  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000017  0080010c  0080010c  0000068c  2**0
+  2 .bss          00000017  0080010c  0080010c  00000690  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  0000068c  2**0
+  3 .comment      00000030  00000000  00000000  00000690  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000006bc  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000006c0  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000030  00000000  00000000  000006f8  2**0
+  5 .debug_aranges 00000030  00000000  00000000  000006fc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000008a3  00000000  00000000  00000728  2**0
+  6 .debug_info   000008a3  00000000  00000000  0000072c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000006de  00000000  00000000  00000fcb  2**0
+  7 .debug_abbrev 000006de  00000000  00000000  00000fcf  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000549  00000000  00000000  000016a9  2**0
+  8 .debug_line   0000054f  00000000  00000000  000016ad  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000000bc  00000000  00000000  00001bf4  2**2
+  9 .debug_frame  000000bc  00000000  00000000  00001bfc  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000003b3  00000000  00000000  00001cb0  2**0
+ 10 .debug_str    000003b3  00000000  00000000  00001cb8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000342  00000000  00000000  00002063  2**0
+ 11 .debug_loc    00000342  00000000  00000000  0000206b  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000020  00000000  00000000  000023a5  2**0
+ 12 .debug_ranges 00000020  00000000  00000000  000023ad  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -74,7 +74,7 @@ Disassembly of section .text:
   7c:	11 e0       	ldi	r17, 0x01	; 1
   7e:	a0 e0       	ldi	r26, 0x00	; 0
   80:	b1 e0       	ldi	r27, 0x01	; 1
-  82:	ec ee       	ldi	r30, 0xEC	; 236
+  82:	e0 ef       	ldi	r30, 0xF0	; 240
   84:	f5 e0       	ldi	r31, 0x05	; 5
   86:	02 c0       	rjmp	.+4      	; 0x8c <__do_copy_data+0x10>
   88:	05 90       	lpm	r0, Z+
@@ -97,7 +97,7 @@ Disassembly of section .text:
   9e:	b2 07       	cpc	r27, r18
   a0:	e1 f7       	brne	.-8      	; 0x9a <.do_clear_bss_loop>
   a2:	0e 94 a0 02 	call	0x540	; 0x540 <main>
-  a6:	0c 94 f4 02 	jmp	0x5e8	; 0x5e8 <_exit>
+  a6:	0c 94 f6 02 	jmp	0x5ec	; 0x5ec <_exit>
 
 000000aa <__bad_interrupt>:
   aa:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -152,7 +152,7 @@ ISR(ADC_vect) {
   fc:	81 e0       	ldi	r24, 0x01	; 1
   fe:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__DATA_REGION_ORIGIN__+0x1c>
  102:	04 c0       	rjmp	.+8      	; 0x10c <__vector_24+0x5e>
-		} else {
+	} else {
 		ADCL;
  104:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <__DATA_REGION_ORIGIN__+0x18>
 		ADCH;
@@ -213,7 +213,7 @@ ISR(SPI_STC_vect) {
  16a:	92 83       	std	Z+2, r25	; 0x02
 		spi[1] = 0;
  16c:	11 82       	std	Z+1, r1	; 0x01
-		} if(spi[2] >= 0x00 && spi[2] < 0x0B) {
+	} if(spi[2] >= 0x00 && spi[2] < 0x0B) {
  16e:	e0 91 0f 01 	lds	r30, 0x010F	; 0x80010f <spi+0x2>
  172:	eb 30       	cpi	r30, 0x0B	; 11
  174:	e0 f5       	brcc	.+120    	; 0x1ee <__vector_19+0xb4>
@@ -282,7 +282,7 @@ ISR(SPI_STC_vect) {
 		SPDR = 0x00;
  1ea:	1e bc       	out	0x2e, r1	; 46
  1ec:	8a c1       	rjmp	.+788    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
-		} else if(spi[2] >= 0x10 && spi[2] < 0x1B) {
+	} else if(spi[2] >= 0x10 && spi[2] < 0x1B) {
  1ee:	90 ef       	ldi	r25, 0xF0	; 240
  1f0:	9e 0f       	add	r25, r30
  1f2:	9b 30       	cpi	r25, 0x0B	; 11
@@ -349,7 +349,7 @@ ISR(SPI_STC_vect) {
 		SPDR = 0x00;
  264:	1e bc       	out	0x2e, r1	; 46
  266:	4d c1       	rjmp	.+666    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
-		} else if(spi[2] >= 0x20 && spi[2] < 0x2B) {
+	} else if(spi[2] >= 0x20 && spi[2] < 0x2B) {
  268:	90 ee       	ldi	r25, 0xE0	; 224
  26a:	9e 0f       	add	r25, r30
  26c:	9b 30       	cpi	r25, 0x0B	; 11
@@ -419,7 +419,7 @@ ISR(SPI_STC_vect) {
 		SPDR = 0x00;
  2e4:	1e bc       	out	0x2e, r1	; 46
  2e6:	0d c1       	rjmp	.+538    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
-		} else if(spi[2] >= 0x30 && spi[2] < 0x3B) {
+	} else if(spi[2] >= 0x30 && spi[2] < 0x3B) {
  2e8:	90 ed       	ldi	r25, 0xD0	; 208
  2ea:	9e 0f       	add	r25, r30
  2ec:	9b 30       	cpi	r25, 0x0B	; 11
@@ -486,7 +486,7 @@ ISR(SPI_STC_vect) {
 		SPDR = 0x00;
  35e:	1e bc       	out	0x2e, r1	; 46
  360:	d0 c0       	rjmp	.+416    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
-		} else if(spi[2] >= 0x40 && spi[2] < 0x4B) {
+	} else if(spi[2] >= 0x40 && spi[2] < 0x4B) {
  362:	90 ec       	ldi	r25, 0xC0	; 192
  364:	9e 0f       	add	r25, r30
  366:	9b 30       	cpi	r25, 0x0B	; 11
@@ -560,7 +560,7 @@ ISR(SPI_STC_vect) {
 		} else SPDR = 0x00;
  3e2:	1e bc       	out	0x2e, r1	; 46
  3e4:	8e c0       	rjmp	.+284    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
-		} else if(spi[2] >= 0x50 && spi[2] < 0x57) {
+	} else if(spi[2] >= 0x50 && spi[2] < 0x57) {
  3e6:	90 eb       	ldi	r25, 0xB0	; 176
  3e8:	9e 0f       	add	r25, r30
  3ea:	97 30       	cpi	r25, 0x07	; 7
@@ -595,7 +595,7 @@ ISR(SPI_STC_vect) {
 		else SPDR = 0x00;
  420:	1e bc       	out	0x2e, r1	; 46
  422:	6f c0       	rjmp	.+222    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
-		}  else if(spi[2] >= 0x60 && spi[2] < 0x64) {
+	}  else if(spi[2] >= 0x60 && spi[2] < 0x64) {
  424:	90 ea       	ldi	r25, 0xA0	; 160
  426:	9e 0f       	add	r25, r30
  428:	94 30       	cpi	r25, 0x04	; 4
@@ -629,7 +629,7 @@ ISR(SPI_STC_vect) {
 		SPDR = 0x00;
  45c:	1e bc       	out	0x2e, r1	; 46
  45e:	51 c0       	rjmp	.+162    	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
-		}  else if(spi[2] >= 0x64 && spi[2] < 0x6C) {
+	}  else if(spi[2] >= 0x64 && spi[2] < 0x6C) {
  460:	9c e9       	ldi	r25, 0x9C	; 156
  462:	9e 0f       	add	r25, r30
  464:	98 30       	cpi	r25, 0x08	; 8
@@ -682,7 +682,7 @@ ISR(SPI_STC_vect) {
 		} SPDR = 0x00;
  4bc:	1e bc       	out	0x2e, r1	; 46
  4be:	21 c0       	rjmp	.+66     	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
-		}  else if(spi[2] == 0x6E) {
+	}  else if(spi[2] == 0x6E) {
  4c0:	ee 36       	cpi	r30, 0x6E	; 110
  4c2:	69 f4       	brne	.+26     	; 0x4de <__LOCK_REGION_LENGTH__+0xde>
 		spi[1] = 5;
@@ -700,7 +700,7 @@ ISR(SPI_STC_vect) {
 		SPDR = 0x00;
  4da:	1e bc       	out	0x2e, r1	; 46
  4dc:	12 c0       	rjmp	.+36     	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
-		}  else if(spi[2] == 0x6F) {
+	}  else if(spi[2] == 0x6F) {
  4de:	ef 36       	cpi	r30, 0x6F	; 111
  4e0:	49 f4       	brne	.+18     	; 0x4f4 <__LOCK_REGION_LENGTH__+0xf4>
 		pwm[0] = 0;
@@ -718,7 +718,7 @@ ISR(SPI_STC_vect) {
 		SPDR = 0x00;
  4f0:	1e bc       	out	0x2e, r1	; 46
  4f2:	07 c0       	rjmp	.+14     	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
-		} else if(spi[2] == 0xFF) {
+	} else if(spi[2] == 0xFF) {
  4f4:	ef 3f       	cpi	r30, 0xFF	; 255
  4f6:	29 f4       	brne	.+10     	; 0x502 <__LOCK_REGION_LENGTH__+0x102>
 		spi[1] = 1;
@@ -775,111 +775,115 @@ int main(void) {
 	DDRD = 0xF0;
  54a:	8a b9       	out	0x0a, r24	; 10
 	
+	PORTD = 0x01; //remove
+ 54c:	81 e0       	ldi	r24, 0x01	; 1
+ 54e:	8b b9       	out	0x0b, r24	; 11
+	
 	TCCR1A = 0b10100001;
- 54c:	81 ea       	ldi	r24, 0xA1	; 161
- 54e:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <__DATA_REGION_ORIGIN__+0x20>
+ 550:	81 ea       	ldi	r24, 0xA1	; 161
+ 552:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <__DATA_REGION_ORIGIN__+0x20>
 	TCCR1B = 0b00001010;
- 552:	8a e0       	ldi	r24, 0x0A	; 10
- 554:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__DATA_REGION_ORIGIN__+0x21>
+ 556:	8a e0       	ldi	r24, 0x0A	; 10
+ 558:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__DATA_REGION_ORIGIN__+0x21>
 
 	TCCR2A = 0b10100011;
- 558:	83 ea       	ldi	r24, 0xA3	; 163
- 55a:	80 93 b0 00 	sts	0x00B0, r24	; 0x8000b0 <__DATA_REGION_ORIGIN__+0x50>
+ 55c:	83 ea       	ldi	r24, 0xA3	; 163
+ 55e:	80 93 b0 00 	sts	0x00B0, r24	; 0x8000b0 <__DATA_REGION_ORIGIN__+0x50>
 	TCCR2B = 0b00000010;
- 55e:	82 e0       	ldi	r24, 0x02	; 2
- 560:	80 93 b1 00 	sts	0x00B1, r24	; 0x8000b1 <__DATA_REGION_ORIGIN__+0x51>
+ 562:	82 e0       	ldi	r24, 0x02	; 2
+ 564:	80 93 b1 00 	sts	0x00B1, r24	; 0x8000b1 <__DATA_REGION_ORIGIN__+0x51>
 
 	ADMUX = 0x00;
- 564:	10 92 7c 00 	sts	0x007C, r1	; 0x80007c <__DATA_REGION_ORIGIN__+0x1c>
+ 568:	10 92 7c 00 	sts	0x007C, r1	; 0x80007c <__DATA_REGION_ORIGIN__+0x1c>
 	ADCSRA = (1 << ADEN) | (1 << ADSC) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0) | (1 << ADIE);
- 568:	8f ec       	ldi	r24, 0xCF	; 207
- 56a:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <__DATA_REGION_ORIGIN__+0x1a>
+ 56c:	8f ec       	ldi	r24, 0xCF	; 207
+ 56e:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <__DATA_REGION_ORIGIN__+0x1a>
 	SPCR = (1<<SPE) | (1<<SPIE);
- 56e:	80 ec       	ldi	r24, 0xC0	; 192
- 570:	8c bd       	out	0x2c, r24	; 44
+ 572:	80 ec       	ldi	r24, 0xC0	; 192
+ 574:	8c bd       	out	0x2c, r24	; 44
 	SPDR = 0x00;
- 572:	1e bc       	out	0x2e, r1	; 46
+ 576:	1e bc       	out	0x2e, r1	; 46
 	sei();
- 574:	78 94       	sei
+ 578:	78 94       	sei
 	
 	while (1) {
 		PORTB = (PORTB & 0xF0) | (pwm[4] >> 4);
- 576:	e0 e1       	ldi	r30, 0x10	; 16
- 578:	f1 e0       	ldi	r31, 0x01	; 1
+ 57a:	e0 e1       	ldi	r30, 0x10	; 16
+ 57c:	f1 e0       	ldi	r31, 0x01	; 1
 		PORTC = (PORTC & 0x0F) | (pwm[4] << 4);
 		OCR2A = pwm[0];
- 57a:	43 eb       	ldi	r20, 0xB3	; 179
- 57c:	50 e0       	ldi	r21, 0x00	; 0
+ 57e:	43 eb       	ldi	r20, 0xB3	; 179
+ 580:	50 e0       	ldi	r21, 0x00	; 0
 		OCR2B = pwm[1];
- 57e:	24 eb       	ldi	r18, 0xB4	; 180
- 580:	30 e0       	ldi	r19, 0x00	; 0
+ 582:	24 eb       	ldi	r18, 0xB4	; 180
+ 584:	30 e0       	ldi	r19, 0x00	; 0
 		OCR1A = pwm[2];
- 582:	c8 e8       	ldi	r28, 0x88	; 136
- 584:	d0 e0       	ldi	r29, 0x00	; 0
+ 586:	c8 e8       	ldi	r28, 0x88	; 136
+ 588:	d0 e0       	ldi	r29, 0x00	; 0
 		OCR1B = pwm[3];
- 586:	0f 2e       	mov	r0, r31
- 588:	fa e8       	ldi	r31, 0x8A	; 138
- 58a:	ef 2e       	mov	r14, r31
- 58c:	f1 2c       	mov	r15, r1
- 58e:	f0 2d       	mov	r31, r0
+ 58a:	0f 2e       	mov	r0, r31
+ 58c:	fa e8       	ldi	r31, 0x8A	; 138
+ 58e:	ef 2e       	mov	r14, r31
+ 590:	f1 2c       	mov	r15, r1
+ 592:	f0 2d       	mov	r31, r0
 	SPCR = (1<<SPE) | (1<<SPIE);
 	SPDR = 0x00;
 	sei();
 	
 	while (1) {
 		PORTB = (PORTB & 0xF0) | (pwm[4] >> 4);
- 590:	15 b1       	in	r17, 0x05	; 5
- 592:	84 81       	ldd	r24, Z+4	; 0x04
- 594:	90 e0       	ldi	r25, 0x00	; 0
- 596:	bc 01       	movw	r22, r24
- 598:	75 95       	asr	r23
- 59a:	67 95       	ror	r22
+ 594:	15 b1       	in	r17, 0x05	; 5
+ 596:	84 81       	ldd	r24, Z+4	; 0x04
+ 598:	90 e0       	ldi	r25, 0x00	; 0
+ 59a:	bc 01       	movw	r22, r24
  59c:	75 95       	asr	r23
  59e:	67 95       	ror	r22
  5a0:	75 95       	asr	r23
  5a2:	67 95       	ror	r22
  5a4:	75 95       	asr	r23
  5a6:	67 95       	ror	r22
- 5a8:	71 2f       	mov	r23, r17
- 5aa:	70 7f       	andi	r23, 0xF0	; 240
- 5ac:	67 2b       	or	r22, r23
- 5ae:	65 b9       	out	0x05, r22	; 5
+ 5a8:	75 95       	asr	r23
+ 5aa:	67 95       	ror	r22
+ 5ac:	71 2f       	mov	r23, r17
+ 5ae:	70 7f       	andi	r23, 0xF0	; 240
+ 5b0:	67 2b       	or	r22, r23
+ 5b2:	65 b9       	out	0x05, r22	; 5
 		PORTC = (PORTC & 0x0F) | (pwm[4] << 4);
- 5b0:	68 b1       	in	r22, 0x08	; 8
- 5b2:	82 95       	swap	r24
- 5b4:	92 95       	swap	r25
- 5b6:	90 7f       	andi	r25, 0xF0	; 240
- 5b8:	98 27       	eor	r25, r24
- 5ba:	80 7f       	andi	r24, 0xF0	; 240
+ 5b4:	68 b1       	in	r22, 0x08	; 8
+ 5b6:	82 95       	swap	r24
+ 5b8:	92 95       	swap	r25
+ 5ba:	90 7f       	andi	r25, 0xF0	; 240
  5bc:	98 27       	eor	r25, r24
- 5be:	96 2f       	mov	r25, r22
- 5c0:	9f 70       	andi	r25, 0x0F	; 15
- 5c2:	89 2b       	or	r24, r25
- 5c4:	88 b9       	out	0x08, r24	; 8
+ 5be:	80 7f       	andi	r24, 0xF0	; 240
+ 5c0:	98 27       	eor	r25, r24
+ 5c2:	96 2f       	mov	r25, r22
+ 5c4:	9f 70       	andi	r25, 0x0F	; 15
+ 5c6:	89 2b       	or	r24, r25
+ 5c8:	88 b9       	out	0x08, r24	; 8
 		OCR2A = pwm[0];
- 5c6:	80 81       	ld	r24, Z
- 5c8:	da 01       	movw	r26, r20
- 5ca:	8c 93       	st	X, r24
+ 5ca:	80 81       	ld	r24, Z
+ 5cc:	da 01       	movw	r26, r20
+ 5ce:	8c 93       	st	X, r24
 		OCR2B = pwm[1];
- 5cc:	81 81       	ldd	r24, Z+1	; 0x01
- 5ce:	d9 01       	movw	r26, r18
- 5d0:	8c 93       	st	X, r24
+ 5d0:	81 81       	ldd	r24, Z+1	; 0x01
+ 5d2:	d9 01       	movw	r26, r18
+ 5d4:	8c 93       	st	X, r24
 		OCR1A = pwm[2];
- 5d2:	82 81       	ldd	r24, Z+2	; 0x02
- 5d4:	90 e0       	ldi	r25, 0x00	; 0
- 5d6:	99 83       	std	Y+1, r25	; 0x01
- 5d8:	88 83       	st	Y, r24
+ 5d6:	82 81       	ldd	r24, Z+2	; 0x02
+ 5d8:	90 e0       	ldi	r25, 0x00	; 0
+ 5da:	99 83       	std	Y+1, r25	; 0x01
+ 5dc:	88 83       	st	Y, r24
 		OCR1B = pwm[3];
- 5da:	83 81       	ldd	r24, Z+3	; 0x03
- 5dc:	90 e0       	ldi	r25, 0x00	; 0
- 5de:	d7 01       	movw	r26, r14
- 5e0:	11 96       	adiw	r26, 0x01	; 1
- 5e2:	9c 93       	st	X, r25
- 5e4:	8e 93       	st	-X, r24
- 5e6:	d4 cf       	rjmp	.-88     	; 0x590 <main+0x50>
+ 5de:	83 81       	ldd	r24, Z+3	; 0x03
+ 5e0:	90 e0       	ldi	r25, 0x00	; 0
+ 5e2:	d7 01       	movw	r26, r14
+ 5e4:	11 96       	adiw	r26, 0x01	; 1
+ 5e6:	9c 93       	st	X, r25
+ 5e8:	8e 93       	st	-X, r24
+ 5ea:	d4 cf       	rjmp	.-88     	; 0x594 <main+0x54>
 
-000005e8 <_exit>:
- 5e8:	f8 94       	cli
+000005ec <_exit>:
+ 5ec:	f8 94       	cli
 
-000005ea <__stop_program>:
- 5ea:	ff cf       	rjmp	.-2      	; 0x5ea <__stop_program>
+000005ee <__stop_program>:
+ 5ee:	ff cf       	rjmp	.-2      	; 0x5ee <__stop_program>

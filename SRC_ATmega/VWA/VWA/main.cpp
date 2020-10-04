@@ -13,7 +13,7 @@ ISR(ADC_vect) {
 		int adc_h = ADCH;
 		adc[ADMUX + 1] = adc_l | (adc_h << 8);
 		ADMUX = (ADMUX < 7) ? (ADMUX + 1) : 1;
-		} else {
+	} else {
 		ADCL;
 		ADCH;
 	} ADCSRA |= (1 << ADSC) | (1 << ADIF);
@@ -97,6 +97,8 @@ int main(void) {
 	DDRB = 0x4F;
 	DDRC = 0xF0;
 	DDRD = 0xF0;
+	
+	PORTD = 0x01; //remove
 	
 	TCCR1A = 0b10100001;
 	TCCR1B = 0b00001010;
