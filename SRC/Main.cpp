@@ -2,8 +2,7 @@
 
 int main() {
    VWAPI::init();
-   IO pin(2, IO::INPUT);
-   while(true) {
-      LED().set(pin.getLevel() ? LED::GREEN : LED::RED);
-   }
+   //Nokia5110 dp;
+   //dp.write(1, 1, "Hello World");
+   while(true);
 }

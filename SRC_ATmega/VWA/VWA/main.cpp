@@ -87,7 +87,8 @@ ISR(SPI_STC_vect) {
 		SPDR = 0x00;
 	} else if(spi[2] == 0xFF) {
 		spi[1] = 1;
-		SPDR = 0xAC;
+		if(spi[0] == 0) SPDR = 0xAC;
+		else SPDR = 0x00;
 	} spi[0] = (spi[0] < spi[1]) ? (spi[0]+1) : 0;
 	if(spi[1] == 0) SPDR = 0x00;
 }
