@@ -2,7 +2,9 @@
 #include "IO.hpp"
 #include "ADC.hpp"
 #include "LED.hpp"
+#include "PWM.hpp"
 #include "GPIO.hpp"
+#include "UART.hpp"
 #include "Timer.hpp"
 #include "SPIDevice.hpp"
 
@@ -24,9 +26,9 @@ namespace VWAPI {
         GPIO(24, GPIO::OUTPUT).setLevel(false);
         GPIO(25, GPIO::OUTPUT).setLevel(false);
 
-        wait_ms(50);
+        wait_ms(100);
 
-        SPIDevice mega(22, 0, true, 1000000);
+        SPIDevice mega(22, 0, true, 300000);
         mega.transfer(0xFF);
         GPIO((mega.transfer(0x00) == 0xAC) ? 24 : 25).setLevel(true);
     }

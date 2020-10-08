@@ -11,12 +11,12 @@ public:
 
     IO(char id) {
         this->id = id > 8 ? 8 : (id < 1 ? 1 : id);
-        this->mega = SPIDevice(22, 0, true, 1000000);
+        this->mega = SPIDevice(22, 0, true, 300000);
     }
 
     IO(char id, Mode m) {
         this->id = id > 8 ? 8 : (id < 1 ? 1 : id);
-        this->mega = SPIDevice(22, 0, true, 1000000);
+        this->mega = SPIDevice(22, 0, true, 300000);
         this->mega.transfer(m + this->id - 1);
     }
 
