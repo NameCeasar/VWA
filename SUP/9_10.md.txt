@@ -1,0 +1,14 @@
+# 9. 10.
+
+#### Betreung
+
+Besprechung der Gliederung der VWA
+Ergänzung fehlender Punkte
+Optimales erklären des SRC-Codes
+Link zur Arbeit auf Overleaf
+
+#### Fortschritt
+
+SRC Code fast fertig
+Gliederung der VWA fertig
+
