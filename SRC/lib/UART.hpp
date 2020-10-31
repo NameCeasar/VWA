@@ -1,25 +1,28 @@
 #pragma once
 #include "GPIO.hpp"
+#include "LED.hpp"
 
 class UART {
     volatile unsigned int* reg;
 public:
     UART() {
-        reg = (unsigned int*) 0x20215000;
-        GPIO(14, GPIO::ALT5);
-        GPIO(15, GPIO::ALT5);
-        reg[1] = 1;
-        reg[19] = 1 << 7;
-        reg[16] = 0x0E;
-        reg[17] = 0x01;
-        reg[19] = 1;
-        reg[24] = 3;
+        reg = (unsigned int*) 0x20201000;
+        GPIO(14, GPIO::ALT0);
+        GPIO(15, GPIO::ALT0);
+        reg[9] = 1;
+        reg[10] = 40; 
+        reg[11] = (7 << 4);
+        reg[12] = (3 << 7) | 0x01;
     }
 
     void print(char* string) {
         while(*string) {
-            while(!(reg[25] & (1 << 3)));
-            reg[16] = *(string++);
+            while(reg[6] & (1 << 5));
+            reg[0] = *(string++);
         }
+    }
+
+    char* read(int bytes) {
+        return 0;
     }
 };
