@@ -5,7 +5,6 @@ class GPIO {
     char id;
 public:
     enum Mode { INPUT, OUTPUT, ALT0 = 4, ALT1 = 5, ALT2 = 6, ALT3 = 7, ALT4 = 3, ALT5 = 2};
-    enum Events { HIGH, LOW, RISING, FALLING, ASYNC_RISING, ASYNC_FALLING };
 
     GPIO() {}
 
@@ -17,8 +16,7 @@ public:
     GPIO(char pin, Mode mode) {
         reg = (unsigned int*) 0x20200000;
         id = pin;
-        reg[pin/10] &= ~(7 << ((pin % 10) * 3));
-        reg[pin/10] |= ((mode & 7) << ((pin % 10) * 3));
+        setMode(mode);
     }
 
     Mode getMode() {

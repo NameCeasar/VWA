@@ -20,13 +20,12 @@ public:
     }
 
     void stop() {
-        paused = false;
+        paused = true;
         val += reg[1] - started;
         started = 0;
     }
 
     void pause() {
-        if(paused) return;
         paused = true;
         val += reg[1] - started;
         started = 0;
@@ -39,7 +38,7 @@ public:
     }
 
     bool isRunning() {
-        return paused;
+        return !paused;
     }
 
     unsigned int get() {

@@ -18,6 +18,6 @@ public:
 
     void set(double value) {
         value = value > 1.0 ? 1.0 : (value < 0.0 ? 0.0 : value);
-        reg[this->channel * 4 + 1] = value * 1000.0;
+        reg[this->channel * 4 + 1] = value * 1000.0;  
     }
 };
