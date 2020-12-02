@@ -1,6 +1,5 @@
 #pragma once
 #include "GPIO.hpp"
-#include "LED.hpp"
 
 class UART {
     volatile unsigned int* reg;
@@ -23,6 +22,11 @@ public:
     }
 
     char* read(int bytes) {
-        return 0;
+        if(reg[6] & (1 << 4)) return 0;
+        char data[bytes];
+        for(int i = 0; !(reg[6] & (1 << 4); i++) {
+            data[i] = reg[0] & 0xFF;
+        } char* ptr = data;
+        return ptr;
     }
 };
