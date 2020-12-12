@@ -2,11 +2,9 @@
 
 int main() {
   VWAPI::init();
-  LED l;
+  UART u;
+  u.write("\n\n==============\n VWAPI SERIAL\n==============\n\n");
   while(true) {
-    l.set(LED::GREEN);
-    wait_ms(100);
-    l.set(LED::RED);
-    wait_ms(100);
+    wait_ms(1000);
   }
 }
