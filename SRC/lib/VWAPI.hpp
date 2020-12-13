@@ -5,7 +5,9 @@
 #include "PWM.hpp"
 #include "GPIO.hpp"
 #include "UART.hpp"
+#include "Util.hpp"
 #include "Timer.hpp"
+#include "I2CDevice.hpp"
 #include "SPIDevice.hpp"
 
 #include "ext/Nokia5110.hpp"
