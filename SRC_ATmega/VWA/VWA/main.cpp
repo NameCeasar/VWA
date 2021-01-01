@@ -99,8 +99,6 @@ int main(void) {
 	DDRC = 0xF0;
 	DDRD = 0xF0;
 	
-	PORTD = 0x01; //remove
-	
 	TCCR1A = 0b10100001;
 	TCCR1B = 0b00001010;
 

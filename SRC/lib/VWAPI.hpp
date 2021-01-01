@@ -13,9 +13,7 @@
 #include "ext/Nokia5110.hpp"
 
 namespace VWAPI {
-
-    bool active = false;
-
+    
     void init() {
         GPIO(18, GPIO::OUTPUT).setLevel(true);
 
@@ -30,7 +28,7 @@ namespace VWAPI {
 
         wait_ms(100);
 
-        SPIDevice mega(22, 0, true, 300000);
+        SPIDevice mega(22, 0, true, 1000000);
         mega.transfer(0xFF);
         GPIO((mega.transfer(0x00) == 0xAC) ? 24 : 25).setLevel(true);
     }

@@ -76,7 +76,7 @@ public:
         return ptr;
     }
 
-    char transfer(char data) {
+    char command(char data) {
         reg[2] = 1;
         reg[3] = address;
         reg[4] = data;
@@ -91,7 +91,7 @@ public:
         return reg[4];
     }
 
-    char* transfer(char* data, int wlen, int rlen) {
+    char* command(char* data, int wlen, int rlen) {
         char out[rlen];
         reg[2] = wlen;
         reg[3] = address;
