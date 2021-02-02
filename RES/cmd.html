@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<head>
+    <title>Table</title>
+</head>
+<style>
+body {
+    margin: 0;
+    background-color: #FFFFFF;
+}
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 25px 25px;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width: 600px;
+}
+.styled-table thead tr {
+    background-color: #e4a022;
+    color: #ffffff;
+    border-right: 2px solid #e4a022;
+    border-left: 2px solid #e4a022;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 10px;
+    text-align: center;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #cccccc;
+    border-right: 2px solid #e4a022;
+    border-left: 2px solid #e4a022;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #e4a022;
+}
+
+.styled-table tr td:nth-of-type(1) {
+    width: 15%;
+}
+
+.styled-table tr td:nth-of-type(2) {
+    width: 20%;
+    text-align: right;
+    padding-right: 3%;
+}
+
+.styled-table tr td:not(:last-of-type) {
+    border-right: 1px solid #cccccc;  
+}
+</style>
+<body>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Befehl</th>
+                <th>Anzahl von<br>Bytes</th>
+                <th>Beschreibung</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>0x00 + n</td>
+                <td>1</td>
+                <td>Pin n[0;10] als Input konfigurieren</td>
+            </tr><tr>
+                <td>0x10 + n</td>
+                <td>1</td>
+                <td>Pin n[0;10] als Output konfigurieren</td>
+            </tr><tr>
+                <td>0x20 + n</td>
+                <td>1</td>
+                <td>Pin n[0;10] auf LOW setzen</td>
+            </tr><tr>
+                <td>0x30 + n</td>
+                <td>1</td>
+                <td>Pin n[0;10] auf HIGH setzen</td>
+            </tr><tr>
+                <td>0x40 + n</td>
+                <td>2</td>
+                <td>Level von Pin n[0;10] abfragen</td>
+            </tr><tr>
+                <td>0x50 + n</td>
+                <td>3</td>
+                <td>Analoger Wert von Pin n[0;10] abfragen</td>
+            </tr><tr>
+                <td>0x60 + n</td>
+                <td>1</td>
+                <td>Motor n[0;3] stoppen</td>
+            </tr><tr>
+                <td>0x64 + n</td>
+                <td>2</td>
+                <td>Motor n[0;3] vorwärts steuern</td>
+            </tr>><tr>
+                <td>0x68 + n</td>
+                <td>2</td>
+                <td>Motor n[0;3] rückwärts steuern</td>
+            </tr><tr>
+                <td>0x6E</td>
+                <td>6</td>
+                <td>Alle Motoren steuern</td>
+            </tr><tr>
+                <td>0x6F</td>
+                <td>1</td>
+                <td>Alle Motoren stoppen</td>
+            </tr><tr>
+                <td>0xFF</td>
+                <td>2</td>
+                <td>Kommunikationstest</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
