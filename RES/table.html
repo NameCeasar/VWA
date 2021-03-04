@@ -42,7 +42,6 @@ body {
 
 .styled-table tr td:nth-of-type(2) {
     width: 20%;
-    text-align: left;
     padding-left: 3%;
 }
 
@@ -54,28 +53,35 @@ body {
     <table class="styled-table">
         <thead>
             <tr>
-                <th>Offset</th>
-                <th>Name</th>
+                <th>Flag</th>
                 <th>Beschreibung</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>0-5</td>
-                <td>GPIO FSELn</td>
-                <td>GPIO Function Select-Register</td>
-            </tr><tr>
-                <td>7-8</td>
-                <td>GPIO SETn</td>
-                <td>GPIO Output Set-Register</td>
-            </tr><tr>
-                <td>10-11</td>
-                <td>GPIO CLRn</td>
-                <td>GPIO Output Clear-Register</td>
-            </tr><tr>
-                <td>13-14</td>
-                <td>GPIO LEVn</td>
-                <td>GPIO Pin Level-Register</td>
+                <td>-o [Dateiname]</td>
+                <td>definiert die Outputdatei</td>
+            </tr> <tr>
+                <td>-Ox</td>
+                <td>legt ein Optimierungslevel fest, x = 0 resultiert in keiner Optimierung, x = 3 erwirkt eine maximale Optimierung</td>
+            </tr> <tr>
+                <td>-march=[Plattform]</td>
+                <td>bestimmt die Zielplattform, für diese Platine lautet jene "ARM1176JZF-s"</td>
+            </tr> <tr>
+                <td>-mtune=[Architektur]</td>
+                <td>bestimmt die Prozessorarchitektur, in diesem Fall heißt jene "ARMv6-ZK"</td>
+            </tr> <tr>
+                <td>-mfpu=[Hardware]</td>
+                <td>definiert die Floating-Point-Hardware, hier wird der Wert "vfp" verwendet</td>
+            </tr> <tr>
+                <td>-mfloat-abi=[Art]</td>
+                <td>legt den Umgang mit Floating-Point-Variablen fest, "hard" verwendet die Floating-Point-Hardware für Berechnungen</td>
+            </tr> <tr>
+                <td>-W[Warnung]</td>
+                <td>unterdrückt die angegebene Warnungsart</td>
+            </tr> <tr>
+                <td>-nostartfiles</td>
+                <td>verhindert das Linken der Standard-Startfiles, sodass nur eigener Code ausgeführt wird</td>
             </tr>
         </tbody>
     </table>
